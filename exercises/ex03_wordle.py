@@ -7,7 +7,7 @@ def input_guess(num_char: int) -> str:
     """Prompting the user to input a word of a certain length."""
     first_prompt: str = input(f"Enter a {num_char} character word: ")
     while len(first_prompt) != num_char:
-        first_prompt: str = input(f"That wasn't {num_char} chars! Try again: ")
+        first_prompt = input(f"That wasn't {num_char} chars! Try again: ")
     return first_prompt
 
 
@@ -56,18 +56,18 @@ def main(secret: str) -> None:
     """The entrypoint of the program and main game loop."""
     turn: int = 1
     while turn < 7:
-        print(f"Turn {turn}/6")
+        print(f"=== Turn {turn}/6 ===")
         user_word: str = input_guess(num_char=len(secret))
         print(emojified(guess=user_word, secret_word=secret))
         if user_word == secret:
             print(f"You won in {turn}/6 turns!")
-            exit()
+            return None
         if turn == 6 and user_word != secret:
             print("X/6 - Sorry, try again tomorrow!")
         turn += 1
 
 
-# I created a new variable here called turn representing the turn number a given player is on, as well as a new variable called user_word that is assigned as someone's input into the program. I used the input_guess function with keyword argument, where num_char = len(secret), so the program knows how many characters the word should be. I then used the emoijified function with keyword argument where guess was equal to user_word and secret_word was equal to secret. I had to put exit() in the then block of if user_word == secret, otherwise the program went on to the next turn, even when I won.
+# I created a new variable here called turn representing the turn number a given player is on, as well as a new variable called user_word that is assigned as someone's input into the program. I used the input_guess function with keyword argument, where num_char = len(secret), so the program knows how many characters the word should be. I then used the emoijified function with keyword argument where guess was equal to user_word and secret_word was equal to secret. I had to put return None in the then block of if user_word == secret, otherwise the program went on to the next turn, even when I won.
 
 if __name__ == "__main__":
-    main(secret="codess")
+    main(secret="codes")
