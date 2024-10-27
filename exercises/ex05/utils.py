@@ -21,9 +21,11 @@ def sub(input: list[int], idx_start: int, idx_end: int) -> list[int]:
     idx_s: int = idx_start
     idx_e: int = idx_end
     if len(input) == 0:
+        return new_list
+    if idx_s > len(input):
         return input
-    if idx_s >= len(input):
-        return input
+    if idx_s == len(input):
+        return []
     if idx_end <= 0:
         return input
     if idx_start < 0:
