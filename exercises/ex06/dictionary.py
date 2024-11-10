@@ -27,8 +27,8 @@ def favorite_color(favcol: dict[str, str]) -> str:
     col: str = ""
     for elem in colnum:
         if colnum[elem] > max_color:
-            max_color: int = colnum[elem]
-            col: str = elem
+            max_color = colnum[elem]
+            col = elem
     for elem in colnum:
         if colnum[elem] == max_color:
             return col
@@ -63,10 +63,20 @@ def alphabetizer(input: list[str]) -> dict[str, list[str]]:
 
 def update_attendance(att: dict[str, list[str]], weekday: str, student: str) -> None:
     if weekday in att:
+        for elem in att[weekday]:
+            if elem == student:
+                return None
         att[weekday].append(student)
     else:
         att[weekday] = [student]
     print(att)
 
 
-# I had to make an if-else statement for two conditions: if the weekday was already in att, in which case I would append something to the existing list, and if the weekday was not in the dictionary, in which case I'd create a new list.
+# I had to make an if-else statement for two conditions: if the weekday was already in att, in which case I would append something to the existing list, and if the weekday was not in the dictionary, in which case I'd create a new list. I wouldn't need to do anything to att is the student was already in there for the specific day, so I did a for loop and just exited the function early if that was the case.
+
+attendance_log: dict[str, list[str]] = {
+    "Monday": ["Vrinda", "Kaleb"],
+    "Tuesday": ["Alyssa"],
+}
+update_attendance(attendance_log, "Tuesday", "Vrinda")
+update_attendance(attendance_log, "Wednesday", "Kaleb")

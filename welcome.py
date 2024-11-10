@@ -1,18 +1,10 @@
-x: int = 5
+def funky(i: int) -> int:
+    while i < 5:
+        if i == 2:
+            return i
+        print(i)
+        i += 1
+    return 1000
 
 
-def g(n: int) -> int:
-    n += 3
-    print(n)
-    return n
-
-
-def f(y: int) -> int:
-    print(y)
-    return y + 1
-
-
-y: int = f(x)
-print(y)
-z: int = g(x) + 1
-print(z)
+print(funky(10))
